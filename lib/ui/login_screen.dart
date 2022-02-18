@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_e_shop/ui/home_screen.dart';
+import 'package:flutter_e_shop/ui/bottom_nav_controller.dart';
 import 'package:flutter_e_shop/const/AppColors.dart';
 import 'package:flutter_e_shop/ui/registration_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       var authCredential = userCredential.user;
       if (authCredential!.uid.isNotEmpty) {
         Navigator.push(
-            context, CupertinoPageRoute(builder: (_) => HomeScreen()));
+            context, CupertinoPageRoute(builder: (_) => BottomNavController()));
       } else {
         Fluttertoast.showToast(msg: "Something is wrong");
       }

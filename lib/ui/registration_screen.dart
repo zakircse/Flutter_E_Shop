@@ -20,9 +20,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   signUp() async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: _emailController.text, password: _passwordController.text);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
       var authCredential = userCredential.user;
       if (authCredential!.uid.isNotEmpty) {
         Navigator.push(context, CupertinoPageRoute(builder: (_) => UserForm()));
@@ -237,7 +239,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         Wrap(
                           children: [
                             Text(
-                              "Don't have an account?",
+                              "Already have an account?",
                               style: TextStyle(
                                 fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
