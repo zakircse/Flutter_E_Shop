@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_shop/const/AppColors.dart';
+import 'package:flutter_e_shop/ui/search_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatefulWidget {
@@ -13,7 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  TextEditingController _searchController = TextEditingController();
   List<String> _carouselImages = [];
   var _dotPosition = 0;
   List _products = [];
@@ -67,55 +68,35 @@ class _HomeState extends State<Home> {
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 20.w, right: 20.w),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 50.h,
-                        child: TextField(
-                          controller: _searchController,
-                          decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(0)),
-                                borderSide: BorderSide(
-                                  color: AppColors.deep_orange,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(0)),
-                                borderSide: BorderSide(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              hintText: "Search products here",
-                              hintStyle: TextStyle(
-                                fontSize: 15.sp,
-                              )),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      child: Container(
-                        height: 50.h,
-                        width: 50.h,
+                child: TextField(
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                      borderSide: BorderSide(
                         color: AppColors.deep_orange,
-                        child: Center(
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.white,
-                          ),
-                        ),
                       ),
-                      onTap: () {},
                     ),
-                  ],
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(0)),
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    hintText: "Search products here",
+                    hintStyle: TextStyle(
+                      fontSize: 15.sp,
+                    ),
+                  ),
+                  readOnly: true,
+                  onTap: () {
+                    Navigator.push(context,
+                        CupertinoPageRoute(builder: (_) => SearchScreen()));
+                  },
                 ),
               ),
               SizedBox(
-                height: 10.h,
+                height: 20.h,
               ),
               AspectRatio(
                 aspectRatio: 3.5,
